@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace CarRentApp
 {
+    /// <summary>
+    /// Used to convert to string DisplayAttribute of enum value 
+    /// </summary>
     public class EnumDisplayNameConverter : EnumConverter
     {
         public EnumDisplayNameConverter(Type type) : base(type) { }

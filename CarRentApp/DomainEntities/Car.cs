@@ -1,5 +1,8 @@
 ﻿namespace CarRentApp
 {
+    /// <summary>
+    /// Describes a car of some <see cref="CarType"/> with car specific attributes
+    /// </summary>
     public class Car: Entity
     {
         public CarType Type { get; set; }

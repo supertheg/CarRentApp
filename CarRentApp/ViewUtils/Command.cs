@@ -3,6 +3,9 @@ using System.Windows.Input;
 
 namespace CarRentApp
 {
+    /// <summary>
+    /// Used to construct simple command from delegate
+    /// </summary>
     public class Command : ICommand
     {
         private readonly Action<object> execute;

@@ -46,6 +46,8 @@ namespace CarRentApp
                 return RentResults.AlreadyRented;
             }
 
+            //TODO: add other checks
+
             context.CarRentals.Add(new CarRental { CarId = id });
             context.SaveChanges();
 
