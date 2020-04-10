@@ -18,7 +18,7 @@
         <GroupBox Header="Search car" Grid.Row="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" DataContext="{Binding Filter}">
                 <Label Content="Car type:" Margin="5" VerticalContentAlignment="Center"/>
-                <ComboBox x:Name="CarType" Width="100" Margin="5" ItemsSource="{Binding CarTypes}" SelectedItem="{Binding TypeName}" />
+                <ComboBox x:Name="CarType" Width="100" Margin="5" ItemsSource="{Binding CarTypes}" SelectedItem="{Binding Type}" />
 
                 <Label Content="Price from:" VerticalContentAlignment="Center"/>
                 <TextBox x:Name="PriceFrom" TextWrapping="Wrap" Width="50" Margin="5" VerticalContentAlignment="Center" Text="{Binding PriceFrom, TargetNullValue=''}"/>
@@ -35,7 +35,7 @@
             <ListView x:Name="ListView" ItemsSource="{Binding SearchResults}" SelectedItem="{Binding SelectedCar}" SelectionChanged="ListView_SelectionChanged" >
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding TypeName}" Width="150"/>
+                        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="150"/>
                         <GridViewColumn Header="Model" DisplayMemberBinding="{Binding Model}" Width="200"/>
                         <GridViewColumn Header="Rental Price" DisplayMemberBinding="{Binding RentalPrice, StringFormat=\{0:c2\}}" Width="100"/>
                     </GridView>
@@ -45,9 +45,8 @@
         <GroupBox Header="Car details" Grid.Row="1" Grid.Column="1">
             <StackPanel x:Name="Details" Visibility="Hidden" DataContext="{Binding SelectedCar}">
                 <TextBlock Text="{Binding Id, StringFormat='Id: {0}'}" Margin="5"/>
-                <TextBlock Text="{Binding TypeName, StringFormat='Type: {0}'}" Margin="5"/>
+                <TextBlock Text="{Binding Type, StringFormat='Type: {0}'}" Margin="5"/>
                 <TextBlock Text="{Binding Model, StringFormat='Model: {0}'}" Margin="5"/>
-                <TextBlock Text="{Binding AccelerationTime, StringFormat='AccelerationTime: {0}s'}" Margin="5"/>
                 <TextBlock Text="{Binding AirConditioning, StringFormat='AirConditioning: {0}'}" Margin="5"/>
                 <TextBlock Text="{Binding Radio, StringFormat='Radio: {0}'}" Margin="5"/>
                 <TextBlock Text="{Binding RentalPrice, StringFormat='RentalPrice: {0:c2}'}" Margin="5"/>

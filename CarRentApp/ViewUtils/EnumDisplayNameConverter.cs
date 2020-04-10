@@ -18,7 +18,7 @@ namespace CarRentApp
                 if (value != null) {
                     var fi = value.GetType().GetField(value.ToString());
                     if (fi != null) {
-                        return (fi.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() is DisplayAttribute attribute) && (!string.IsNullOrEmpty(attribute.Name))
+                        return fi.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault() is DisplayAttribute attribute && attribute.Name != null
                             ? attribute.Name
                             : value.ToString();
                     }

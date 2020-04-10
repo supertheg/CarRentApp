@@ -10,23 +10,31 @@ namespace CarRentApp
     /// </summary>
     public partial class App : Application
     {
+        private UnityContainer container;
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            var container = new UnityContainer();
+            container = new UnityContainer();
             container.RegisterType<IDbContext, CarRentDbContext>();
-            container.RegisterType<ICarService, CarService>();
+            container.RegisterType<ISearchCarService, SearchCarService>();
+            container.RegisterType<IRentCarService, RentCarService>();
             container.RegisterType<IDataGenerationService, DataGenerationService>();
 
-            var context = container.Resolve<CarRentDbContext>();
+            var context = container.Resolve<IDbContext>();
+
             if (context.Database.GetPendingMigrations().Any())
             {
                 context.Database.Migrate();
-                container.Resolve<IDataGenerationService>().SeedDatabase();
+                container.Resolve<IDataGenerationService>().SeedDatabaseAsync().ContinueWith(_ => Dispatcher.Invoke(ShowMainWindow));
             }
-            
-            container.Resolve<MainWindow>().Show();
+            else
+            {
+                ShowMainWindow();
+            }
         }
+
+        private void ShowMainWindow() => container.Resolve<MainWindow>().Show();
     }
 }

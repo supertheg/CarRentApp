@@ -4,8 +4,8 @@ namespace CarRentApp
 {
     public class CriteriaViewModel
     {
-        public IEnumerable<string> CarTypes { get; set; }
-        public string TypeName { get; set; }
+        public IEnumerable<CarType> CarTypes { get; set; }
+        public CarType Type { get; set; }
         public decimal? PriceFrom { get; set; } = 50;
         public decimal? PriceTo { get; set; } = 100;
         public bool Conditioning { get; set; }

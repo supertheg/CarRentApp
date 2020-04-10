@@ -1,13 +1,15 @@
-﻿using System;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarRentApp
 {
-    /// <summary>
-    /// Describes car type with type-specific attributes
-    /// </summary>
-    public class CarType: Entity
+    [TypeConverter(typeof(EnumDisplayNameConverter))]
+    public enum CarType
     {
-        public string Name { get; set; }
-        public TimeSpan AccelerationTime { get; set; }
+        [Display(Name = "")]
+        None,
+        Sedan,
+        Sport,
+        Van
     }
 }
