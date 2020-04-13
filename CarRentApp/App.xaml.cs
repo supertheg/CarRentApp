@@ -21,6 +21,10 @@ namespace CarRentApp
             container.RegisterType<ISearchCarService, SearchCarService>();
             container.RegisterType<IRentCarService, RentCarService>();
             container.RegisterType<IDataGenerationService, DataGenerationService>();
+            container.RegisterType<Technician>();
+            container.RegisterType<ICarSpecification<Car>, EngineSpecification>("EngineSpecification");
+            container.RegisterType<ICarSpecification<Car>, RadioSpecification>("RadioSpecification");
+            container.RegisterType<ICarSpecification<Car>, AirConditioningSpecification>("AirConditioningSpecification");
 
             var context = container.Resolve<IDbContext>();
 

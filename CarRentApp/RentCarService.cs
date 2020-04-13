@@ -30,6 +30,7 @@ namespace CarRentApp
     {
         static readonly SemaphoreSlim SemaphoreSlim = new SemaphoreSlim(1, 1);
         private readonly IDbContext context;
+        private readonly Technician technician;
 
         public async Task<RentResults> RentCarAsync(int id)
         {
@@ -40,7 +41,7 @@ namespace CarRentApp
                     return RentResults.AlreadyRented;
 
                 var car = await context.Cars.FindAsync(id);
-                var checkResult = Technician.CheckMachineHealth(car);
+                var checkResult = technician.CheckMachineHealth(car);
                 if (checkResult != RentResults.None)
                     return checkResult;
                 
@@ -53,6 +54,10 @@ namespace CarRentApp
             }
         }
 
-        public RentCarService(IDbContext context) => this.context = context;
+        public RentCarService(IDbContext context, Technician technician)
+        {
+            this.context = context;
+            this.technician = technician;
+        }
     }
 }
