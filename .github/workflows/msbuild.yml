@@ -37,3 +37,9 @@ jobs:
       with:
         name: CarRentApp
         path: CarRentApp\bin\Release\netcoreapp3.1
+        
+    - name: Create Release
+      uses: ncipollo/release-action@v1.8.10
+      with:
+        artifacts: CarRentApp\bin\Release\netcoreapp3.1
+        
