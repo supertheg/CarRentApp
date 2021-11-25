@@ -42,4 +42,5 @@ jobs:
       uses: ncipollo/release-action@v1.8.10
       with:
         artifacts: CarRentApp\bin\Release\netcoreapp3.1
+        tag: ${{ github.ref }}
         
